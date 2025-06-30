@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 // Route middleware
 app.use("/api/auth", authRoutes);
-app.use("/api/message",messageRoutes);
+app.use("/api/messages",messageRoutes);
 
 // Root route to check if server is running
 app.get("/", (req, res) => {
