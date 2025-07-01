@@ -32,12 +32,13 @@ export const getMessages=async (req,res)=>{
         const {id:usertoChatId}=req.params
         const senderId=req.user._id;
 
-        const messages=await Message.find({
-            $or:[
-                {senderId:myId,recieverId:usertoChatId},
-                {senderId:usertoChatId,recieverId:myId}
-            ]
-        });
+        const messages = await Message.find({
+  $or: [
+    { senderId: senderId, recieverId: usertoChatId },
+    { senderId: usertoChatId, recieverId: senderId }
+  ]
+});
+
 
         res.status(200).json(messages)
     } catch(error){
@@ -68,7 +69,8 @@ export const sendMessage=async (req,res)=>{
 
         await newMessage.save();
 
-        res.status(201).json(newMessages);
+        res.status(201).json(newMessage);
+
     }catch(error){
         console.log("Error in sendMessage controller:", error.message);
         res.status(500).json({
