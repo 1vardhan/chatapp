@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix frontend1 && npm run build --prefix frontend1",
-    "start": "npm run start --prefixer backend",
+  "start": "node backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
