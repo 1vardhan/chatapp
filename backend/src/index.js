@@ -6,12 +6,16 @@ import cookieParser from "cookie-parser"
 import {connectDB} from "./lib/db.js";
 import cors from "cors";
 dotenv.config();
-
-
+import path from "path";
+import {app,server} from "./lib/socket.js";
 
 
 const PORT =process.env.PORT
-const app = express();
+
+const _dirname=path.resolve();
+
+
+
 
 app.use(cors({
   origin: 'http://localhost:5173', // Replace with your frontend origin
@@ -27,13 +31,21 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/messages",messageRoutes);
 
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static(path.join(_dirname,"..frontend/dist")));
+
+  app.get("*",(req,res)=>{
+    res.sendFile(path.join(_dirname,"..frontend","dist","index.html"));
+  })
+}
+
 // Root route to check if server is running
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is running on PORT:"+PORT);
   connectDB();
 });

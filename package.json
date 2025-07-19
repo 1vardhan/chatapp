@@ -1,0 +1,26 @@
+{
+  "name": "chat-app_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend1 && npm run build --prefix frontend1",
+    "start": "npm run start --prefixer backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1vardhan/chatapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/1vardhan/chatapp/issues"
+  },
+  "homepage": "https://github.com/1vardhan/chatapp#readme",
+  "dependencies": {
+    "backend": "^0.0.0"
+  }
+}
