@@ -7,6 +7,8 @@ import {connectDB} from "./lib/db.js";
 import cors from "cors";
 dotenv.config();
 import path from "path";
+import { fileURLToPath } from "url";
+
 import {app,server} from "./lib/socket.js";
 
 
@@ -31,11 +33,15 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/messages",messageRoutes);
 
-if(process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname, "../frontend1/dist")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+if (process.env.NODE_ENV === "production") {
+  const staticPath = path.join(__dirname, "../../frontend1/dist");
+  app.use(express.static(staticPath));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(_dirname, "../frontend1", "dist", "index.html"));
+    res.sendFile(path.join(staticPath, "index.html"));
   });
 }
 
