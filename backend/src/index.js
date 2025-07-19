@@ -1,13 +1,13 @@
 import express from "express";
-import authRoutes from "./src/routes/auth.route.js"; // Make sure path is correct
-import messageRoutes from "./src/routes/message.route.js";
+import authRoutes from "./routes/auth.route.js"; // Make sure path is correct
+import messageRoutes from "./routes/message.route.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser"
-import {connectDB} from "./src/lib/db.js";
+import {connectDB} from "./lib/db.js";
 import cors from "cors";
 dotenv.config();
 import path from "path";
-import {app,server} from "./src/lib/socket.js";
+import {app,server} from "./lib/socket.js";
 
 
 const PORT =process.env.PORT
